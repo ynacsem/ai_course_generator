@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
-
+import Nav from "@/components/Nav";
+import { ClerkProvider, GoogleOneTap } from "@clerk/nextjs";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -19,12 +20,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <ClerkProvider>
+    <html lang="en" data-theme="light">
+    <GoogleOneTap />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        
         {children}
       </body>
     </html>
+    </ClerkProvider>
   );
 }
